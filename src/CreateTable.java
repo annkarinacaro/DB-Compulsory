@@ -13,11 +13,7 @@ public class CreateTable {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              Statement stmt = conn.createStatement();
         ) {
-            String sql = "CREATE TABLE IF NOT EXISTS warehouses (\n"
-                    + "	id integer PRIMARY KEY,\n"
-                    + "	name text NOT NULL,\n"
-                    + "	capacity real\n"
-                    + ");";
+            String sql = "INSERT INTO department (DName, DNumber, MgrSSN, MgrStartDate) VALUES ('test', '89', '123456789', '1986-01-01 00:00:00'\n)";
 
             stmt.executeUpdate(sql);
             System.out.println("Created table in given database...");
