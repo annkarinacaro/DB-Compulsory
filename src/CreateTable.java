@@ -5,6 +5,8 @@ public class CreateTable {
     static final String USER = "root";
     static final String PASS = "root";
 
+
+
     private static boolean departmentExists(Connection conn, String departmentName) throws SQLException {
         PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(*) FROM department WHERE DName = ?");
         pstmt.setString(1, departmentName);
@@ -23,20 +25,27 @@ public class CreateTable {
         return count > 0;
     }
 
-    private static void createDepartment(Connection conn, int departmentNumber, String departmentName, String managerSSN) throws SQLException {
-        PreparedStatement pstmt = conn.prepareStatement("INSERT INTO department (DNumber, DName, MgrSSN, MgrStartDate) VALUES (?, ?, ?, NOW())");
-        pstmt.setInt(1, departmentNumber);
-        pstmt.setString(2, departmentName);
-        pstmt.setString(3, managerSSN);
+    private static void createDepartment(Connection conn, String departmentName, String managerSSN) throws SQLException {
+        PreparedStatement pstmt = conn.prepareStatement("INSERT INTO department ( DName, MgrSSN, MgrStartDate) VALUES ( ?, ?, NOW())", Statement.RETURN_GENERATED_KEYS);
+        pstmt.setString(1, departmentName);
+        pstmt.setString(2, managerSSN);
         pstmt.executeUpdate();
-        System.out.println("Created department " + departmentName);
+
+        ResultSet rs = pstmt.getGeneratedKeys();
+        if (rs.next()) {
+            int DNumber = rs.getInt(1);
+            System.out.println("Created department " + departmentName + " with ID " + DNumber);
+        }
+
     }
+
+
 
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
-            String departmentName = "Joyce";
+
+            String departmentName = "testooo00";
             String ssn = "453453453";
-            int departmentNumber = 60;
 
             if (departmentExists(conn, departmentName)) {
                 System.out.println("Department already exists");
@@ -48,9 +57,10 @@ public class CreateTable {
                 return;
             }
 
-            createDepartment(conn, departmentNumber, departmentName, ssn);
+            createDepartment(conn, departmentName, ssn);
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
     }
 }
