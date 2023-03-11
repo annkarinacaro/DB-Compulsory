@@ -32,6 +32,12 @@ public class MainMenu {
                 case "D":
                     AddColumn.main(args);
                     break;
+                case "E":
+                    DepartmentDelete.main(args);
+                    break;
+                case "F":
+                    DepartmentNameUpdate.main(args); //forgot error handling
+                    break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }

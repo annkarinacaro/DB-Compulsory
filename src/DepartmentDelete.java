@@ -1,10 +1,12 @@
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class DepartmentDelete {
 
-    public static void usp_DeleteDepartment(Connection conn, int departmentNumber) throws SQLException{
+    private static void usp_DeleteDepartment(Connection conn, int departmentNumber) throws SQLException{
         try {
         PreparedStatement pstmt = conn.prepareStatement("DELETE FROM project WHERE DNum=?");
         pstmt.setInt(1, departmentNumber);
@@ -37,7 +39,7 @@ public class DepartmentDelete {
     }
 
     //purely for checking if it deletes properly
-    public static void generateToDelete(Connection conn) throws SQLException {
+    private static void generateToDelete(Connection conn) throws SQLException {
         try {
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO department (DNumber, DName, MgrSSN, MgrStartDate) VALUES (10, N'getme', 453453453, NOW())");
             pstmt.executeUpdate();
@@ -70,4 +72,20 @@ public class DepartmentDelete {
         }
         System.out.println("Created shit to delete");
     }
+
+    public static void main(String[] args) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
+
+            Scanner myScanner = new Scanner(System.in);
+            System.out.println("DELETE DEPARMENT");
+            System.out.println("Department number: ");
+            int departmentNumber = myScanner.nextInt();
+
+            usp_DeleteDepartment(conn, departmentNumber);
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+}
 }
