@@ -15,8 +15,8 @@ public class MainMenu {
         if (connection != null) {
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("Which method do you want to call? (A/B/C)");
-            System.out.println("Choose A: CREATE DEPARTMENT\nChoose B: UPDATE MANAGER\nChoose C: CALL DEPARTMENT BY ID");
+            System.out.println("Which method do you want to call? (A/B/C/D)");
+            System.out.println("Choose A: CREATE DEPARTMENT\nChoose B: UPDATE MANAGER\nChoose C: CALL DEPARTMENT BY ID\nChoose D: TO ADD A NEW COLUMN");
             String choice = scanner.next();
 
             switch (choice) {
@@ -28,6 +28,9 @@ public class MainMenu {
                     break;
                 case "C":
                     DeparmentsByID.main(args);
+                    break;
+                case "D":
+                    AddColumn.main(args);
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
