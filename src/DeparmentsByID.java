@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class DeparmentsByID {
 
@@ -9,9 +10,12 @@ public class DeparmentsByID {
         public static void main(String[] args) {
             try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
 
-
                 // Get department information
-                int departmentId = 5; // Deparment ID
+                Scanner myScanner = new Scanner(System.in);
+                System.out.println("GET DEPARTMENT BY ID");
+                System.out.println("Insert department: " );   // Read user input
+                int departmentId = myScanner.nextInt();
+                //int departmentId = 5; // Deparment ID
                 String departmentName = null;
                 int mgrSSN;
                 String mgrStartDate = null;

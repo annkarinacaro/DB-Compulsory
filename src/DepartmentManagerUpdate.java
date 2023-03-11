@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class DepartmentManagerUpdate {
     static final String DB_URL = "jdbc:mysql://localhost:3306/anapatrick_1_company";
@@ -50,16 +51,21 @@ public class DepartmentManagerUpdate {
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
 
+            Scanner myScanner = new Scanner(System.in);
+            System.out.println("UPDATE DEPARTMENT MANAGER");
+            System.out.println("Insert department: " );              // Read user input
+            int dNumber = myScanner.nextInt();
+            System.out.println("Insert new manager number: ");
+            int mgrSSN = myScanner.nextInt();  // Read user input
 
-            int dNumber = 10; // the DNumber of the department to update
-            int mgrSSN = 987987987; // the new value for the MgrSSN column
+            // int dNumber = 10; // the DNumber of the department to update
+            // int mgrSSN = 987987987; // the new value for the MgrSSN column
             String superSsn = "987654321"; // the SuperSSN of the employee who will become the new manager
 
             if (!employeeExists(conn, superSsn)) {
                 System.out.println("Employee with SuperSSN " + superSsn + " doesn't exist");
                 return;
             }
-
 
 
             updateDepartmentManager(dNumber, mgrSSN, conn);

@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class CreateTable {
     static final String DB_URL = "jdbc:mysql://localhost:3306/anapatrick_1_company";
@@ -39,13 +40,19 @@ public class CreateTable {
 
     }
 
-
-
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
 
-            String departmentName = "testooo00";
-            String ssn = "453453453";
+            Scanner myScanner = new Scanner(System.in);
+            System.out.println("CREATE DEPARMENT");
+            System.out.println("Insert department: ");
+            String departmentName = myScanner.nextLine();  // Read user input
+            System.out.println("Insert employee number: " );
+            String ssn = myScanner.nextLine();  // Read user input
+
+
+            //String departmentName = "testooo00";
+            //String ssn = "453453453";
 
             if (departmentExists(conn, departmentName)) {
                 System.out.println("Department already exists");
