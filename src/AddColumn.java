@@ -7,10 +7,10 @@ public class AddColumn {
 
     public static void addNewColumn(String column,String type,  Connection conn) throws SQLException {
         // Prepare the update statement
-        String sql = "ALTER TABLE employee ADD COLUMN " + column + " " + type;
+        String sql = "ALTER TABLE department ADD COLUMN " + column + " " + type;
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
-        System.out.println("New column added to employee table");
+        System.out.println("New column added to department table");
     }
 
 
