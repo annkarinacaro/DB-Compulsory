@@ -5,19 +5,23 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class DepartmentDelete {
+    static final String DB_URL = "jdbc:mysql://localhost:3306/anapatrick_1_company?serverTimezone=UTC";
+    static final String USER = "root";
+    static final String PASS = "slwwf8lqhl";
+
 
     private static void usp_DeleteDepartment(Connection conn, int departmentNumber) throws SQLException{
         try {
-        PreparedStatement pstmt = conn.prepareStatement("DELETE FROM project WHERE DNum=?");
-        pstmt.setInt(1, departmentNumber);
-        pstmt.executeUpdate();
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM project WHERE DNum=?");
+            pstmt.setInt(1, departmentNumber);
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Project deleted already");
         }
         try {
-        PreparedStatement pstmt = conn.prepareStatement("UPDATE employee SET Dno=NULL WHERE Dno=?"); //this should cascade into works_on if we add the right constraint
-        pstmt.setInt(1, departmentNumber);
-        pstmt.executeUpdate();
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE employee SET Dno=NULL WHERE Dno=?"); //this should cascade into works_on if we add the right constraint
+            pstmt.setInt(1, departmentNumber);
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Employee and hopefully works_on deleted already");
         }
@@ -44,7 +48,7 @@ public class DepartmentDelete {
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO department (DNumber, DName, MgrSSN, MgrStartDate) VALUES (10, N'getme', 453453453, NOW())");
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-        System.err.println("Dep exists already");
+            System.err.println("Dep exists already");
         }
         try {
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO dept_locations (DNUmber, DLocation) VALUES (10, N'delete')");
@@ -87,5 +91,4 @@ public class DepartmentDelete {
 
         }
     }
-}
 }
