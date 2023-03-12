@@ -16,7 +16,8 @@ public class MainMenu {
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Which method do you want to call? (A/B/C/D)");
-            System.out.println("Choose A: CREATE DEPARTMENT\nChoose B: UPDATE MANAGER\nChoose C: CALL DEPARTMENT BY ID\nChoose D: TO ADD A NEW COLUMN");
+            System.out.println("Choose A: CREATE DEPARTMENT\nChoose B: UPDATE MANAGER\nChoose C: CALL DEPARTMENT BY ID\nChoose D: TO ADD A NEW COLUMN"
+            + "\nChoose E: TO DELETE A DEPARMENT\nChoose F: TO UPDATE THE DEPARTMENT NAME");
             String choice = scanner.next();
 
             switch (choice) {
