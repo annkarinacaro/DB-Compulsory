@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class DepartmentDelete {
     static final String DB_URL = "jdbc:mysql://localhost:3306/anapatrick_1_company?serverTimezone=UTC";
     static final String USER = "root";
-    static final String PASS = "slwwf8lqhl";
+    static final String PASS = "root";
 
 
     private static void usp_DeleteDepartment(Connection conn, int departmentNumber) throws SQLException{
