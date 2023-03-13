@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class DepartmentNameUpdate {
     static final String DB_URL = "jdbc:mysql://localhost:3306/anapatrick_1_company?serverTimezone=UTC";
     static final String USER = "root";
-    static final String PASS = "slwwf8lqhl";
+    static final String PASS = "root";
 
     //forgot to add try and catch here later hopefully but works for now
     private static void usp_UpdateDepartmentName(Connection conn, int departmentNumber, String departmentName) throws SQLException{
